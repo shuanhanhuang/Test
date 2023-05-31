@@ -21,6 +21,7 @@
   <button onclick="GoToContact(event)">內部連絡單資料</button>
   <button onclick="GoToContract(event)">工程發包議價記錄單</button>
   <button onclick="GoToChange(event)">設計變更通知單</button>
+  <button onclick="Logout(event)">登出</button>
   <form action="." method="POST">
     {% csrf_token %}
     <table border='2' cellpadding='5' cellspacing='2'>
@@ -97,6 +98,9 @@
       }
       function GoToChange(){
         $(location).attr("href","/changeallIndex/");
+      }
+      function Logout(){
+        $(location).attr("href","/logout/");
       }
 
 
