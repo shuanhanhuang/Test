@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from testapp.views import homeDelete,homeEdit,homeIndex,HomePost,\
+from testapp.views import HomePage,login,logout,homeDelete,homeEdit,homeIndex,HomePost,\
     signIndex,signPost,signEdit,signallIndex,Detail,\
     meetingallIndex,meetingIndex,meetingPost,meetingEdit,\
     meetinginnerEdit,meetinginnerPost,meetinginnerIndex,meetinginnerDelete,\
@@ -25,7 +25,11 @@ from testapp.views import homeDelete,homeEdit,homeIndex,HomePost,\
     contractinnerDelete,contractinnerIndex,contractinnerEdit,contractinnerPost,\
     changeallIndex,changeIndex,changeEdit,changePost
 urlpatterns = [
-    path('',homeIndex),
+    path('',HomePage),
+    path('HomePage/',HomePage),
+    path('login/', login),
+    path('logout/', logout),
+
     path('homeIndex/',homeIndex),
     path('homePost/',HomePost),
     path('homeEdit/<int:id>/<str:mode>',homeEdit),
