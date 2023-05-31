@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from datetime import datetime
+from django.contrib import auth
 from testapp.form import HomeForm,SignedForm,MeetingInnerForm,MeetingForm,ContactForm,ContractForm,ContractInnerForm,ChangeForm
 from testapp.models import Home,Signed,MeetingInner,Meeting,Contact,Contract,ContractInner,Change
 
@@ -464,7 +465,7 @@ def changePost(request,cNumber=None):
             cProjectName = changeform.cleaned_data['cProjectName']
             cChangeitem = changeform.cleaned_data['cChangeitem']
             cChangereason = changeform.cleaned_data['cChangereason']
-            cAffectitem = changeform.cleaned_data['cHowChange']
+            cAffectitem = changeform.cleaned_data['cAffectitem']
             cRisk =  changeform.cleaned_data['cRisk']
             cKeypoint =  changeform.cleaned_data['cKeypoint']
             cOption_FS =  changeform.cleaned_data['cOption_FS']
@@ -536,3 +537,28 @@ def changeEdit(request,id=None,mode=None,cNumber=None):
         unit.save()  #寫入資料庫
         message = '已修改...'
         return redirect('/changeIndex/'+str(index.cNumber)+'/')
+    
+def login(request):
+	if request.method == 'POST':
+		name = request.POST['user']
+		password = request.POST['password']
+		user = auth.authenticate(username=name, password=password)
+		if user is not None:
+			if user.is_active:
+				auth.login(request,user)
+				return redirect('/homeIndex/')
+				message = '登入成功！'
+			else:
+				message = '帳號尚未啟用！'
+		else:
+			message = '登入失敗！'
+	return render(request, "login.html", locals())
+
+def logout(request):
+	auth.logout(request)
+	return redirect('/HomePage/')
+
+def HomePage(request):
+	if request.user.is_authenticated:
+		name=request.user.username
+	return render(request, "HomePage.html", locals())
