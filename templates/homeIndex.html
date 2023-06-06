@@ -17,10 +17,10 @@
   <!-- {{sign_detail}} -->
   <button style="margin-right: 5px;" onclick="New()">新增</button>
   <button  onclick="GoToSign(event)">簽呈資料</button>
-  <button  onclick="GoToMeeting(event)">會議記錄資料</button>
+  <!-- <button  onclick="GoToMeeting(event)">會議記錄資料</button>
   <button onclick="GoToContact(event)">內部連絡單資料</button>
   <button onclick="GoToContract(event)">工程發包議價記錄單</button>
-  <button onclick="GoToChange(event)">設計變更通知單</button>
+  <button onclick="GoToChange(event)">設計變更通知單</button> -->
   <form action="." method="POST">
     {% csrf_token %}
     <table border='2' cellpadding='5' cellspacing='2'>
@@ -43,20 +43,12 @@
         <td>{{unit.cProgress}}</td>
         <td>{{unit.cEndDate}}</td>
 
-        <td>
+        <!-- <td>
           <button type="button" class="{{unit.id}}" id="Detail/{{unit.cNumber}}" onclick="Detail(event)">詳細內容</button>
-
-          <!-- {% if unit.cType == "簽呈" %}
-            <button type="button" class="{{unit.id}}" id="Detail/{{unit.cNumber}}" onclick="Detail(event)">詳細內容</button>
-          {% elif unit.cType == "會議記錄" %}
-            <button type="button" class="{{unit.id}}" id="Detail/{{unit.cNumber}}" onclick="Detail(event)">詳細內容</button>
-          {% elif unit.cType == "內部連絡單" %}
-            <button type="button" class="{{unit.id}}" id="Detail/{{unit.cNumber}}" onclick="Detail(event)">詳細內容</button>
-          {% endif %} -->
           <button type="button" class="{{unit.id}}" id="{{unit.id}}" onclick="Edit(event)">編輯</button>
           <button type="button" class="{{unit.id}}" id="{{unit.id}}" onclick="Delete(event)">刪除</button>
 
-        </td>
+        </td> -->
       </tr>
 
       {% endfor %}
